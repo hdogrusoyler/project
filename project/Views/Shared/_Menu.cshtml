@@ -1,0 +1,24 @@
+﻿
+@model  IEnumerable<project.Models.category>
+
+@helper GetSubMenus(IEnumerable<project.Models.category> siteMenu, Nullable<int> topCategoryId)
+{
+    foreach (var i in Model.Where(a => a.topCategoryId.Equals(topCategoryId)))
+    {
+        var submenu = Model.Where(a => a.topCategoryId.Equals(i.id)).Count();
+
+        <li class="@(submenu > 0 ? "dropdown-submenu" : "dropdown")">
+            @*<a href="@(!string.IsNullOrEmpty(" ") ? Url.Content(" ") : "~/default)" style="font-size:16px;">@i.categoryName</a>*@
+            <p>@i.categoryName</p>
+            @if (submenu > 0)
+            {
+                <ul class="dropdown-menu">
+                    @GetSubMenus(siteMenu, i.id)
+                    @* Recursive  Call for Populate Sub items here*@
+                </ul>
+            }
+        </li>
+
+
+    }
+}

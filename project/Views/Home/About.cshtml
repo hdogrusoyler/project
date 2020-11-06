@@ -1,0 +1,16 @@
+﻿@model List<project.Models.category>
+@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Use this area to provide additional information.</p>
+
+
+    @foreach (var item in Model)
+    {
+        <p>@item.id</p>
+        <p>@item.categoryName</p>
+        <p>@item.topCategoryId</p>
+    }
